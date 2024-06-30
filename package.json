@@ -3,21 +3,30 @@
   "version": "1.0.0",
   "main": "expo/AppEntry.js",
   "scripts": {
-    "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web"
+    "start": "npx expo start",
+    "android": "npx expo start --android",
+    "ios": "npx expo start --ios",
+    "reinstall": "rm -rf node_modules && npm cache clean --force && rm -rf /tmp/metro-cache && npm i"
   },
   "dependencies": {
+    "@react-navigation/bottom-tabs": "^6.5.20",
+    "@react-navigation/native": "^6.1.17",
     "expo": "~51.0.17",
     "expo-status-bar": "~1.12.1",
+    "mobx": "^6.12.5",
+    "mobx-react": "^9.1.1",
     "react": "18.2.0",
-    "react-native": "0.74.2"
+    "react-native": "0.74.2",
+    "react-native-reanimated": "^3.10.1",
+    "react-native-safe-area-context": "4.10.1",
+    "react-native-screens": "3.31.1",
+    "rxjs": "^7.8.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
     "@types/react": "~18.2.45",
-    "typescript": "^5.1.3"
+    "@types/react-native": "^0.73.0",
+    "typescript": "^5.5.2"
   },
   "private": true
 }
