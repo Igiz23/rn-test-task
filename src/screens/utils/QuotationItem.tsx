@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, StyleSheet, View } from 'react-native';
 import Animated, { useSharedValue, useAnimatedStyle, withTiming, withSequence, withDelay } from 'react-native-reanimated';
 import { Quote } from '../types/types';
@@ -8,48 +8,93 @@ interface QuoteItemProps {
 }
 
 const QuotationItem: React.FC<QuoteItemProps> = ({ item }) => {
-    const scale = useSharedValue(0.5);
+    const [prevItem, setPrevItem] = useState<Quote | null>(null);
+    const priceScale = useSharedValue(1);
+    const bestBidPriceScale = useSharedValue(1);
+    const bestAskPriceScale = useSharedValue(1);
+    const bestAskSizeScale = useSharedValue(1);
 
     useEffect(() => {
-        scale.value = withSequence(
-            withTiming(1.1, { duration: 300 }),
-            withDelay(200, withTiming(1, { duration: 300 }))
-        );
+        if (prevItem) {
+            if (prevItem.price !== item.price) {
+                priceScale.value = withSequence(
+                    withTiming(1.1, { duration: 300 }),
+                    withDelay(200, withTiming(1, { duration: 300 }))
+                );
+            }
+            if (prevItem.bestBidPrice !== item.bestBidPrice) {
+                bestBidPriceScale.value = withSequence(
+                    withTiming(1.1, { duration: 300 }),
+                    withDelay(200, withTiming(1, { duration: 300 }))
+                );
+            }
+            if (prevItem.bestAskPrice !== item.bestAskPrice) {
+                bestAskPriceScale.value = withSequence(
+                    withTiming(1.1, { duration: 300 }),
+                    withDelay(200, withTiming(1, { duration: 300 }))
+                );
+            }
+            if (prevItem.bestAskSize !== item.bestAskSize) {
+                bestAskSizeScale.value = withSequence(
+                    withTiming(1.1, { duration: 300 }),
+                    withDelay(200, withTiming(1, { duration: 300 }))
+                );
+            }
+        }
+        setPrevItem(item);
     }, [item]);
 
-    const animatedStyle = useAnimatedStyle(() => {
+    const priceAnimatedStyle = useAnimatedStyle(() => {
         return {
-            transform: [{ scale: scale.value }],
+            transform: [{ scale: priceScale.value }],
+        };
+    });
+
+    const bestBidPriceAnimatedStyle = useAnimatedStyle(() => {
+        return {
+            transform: [{ scale: bestBidPriceScale.value }],
+        };
+    });
+
+    const bestAskPriceAnimatedStyle = useAnimatedStyle(() => {
+        return {
+            transform: [{ scale: bestAskPriceScale.value }],
+        };
+    });
+
+    const bestAskSizeAnimatedStyle = useAnimatedStyle(() => {
+        return {
+            transform: [{ scale: bestAskSizeScale.value }],
         };
     });
 
     return (
-        <Animated.View style={[styles.container, animatedStyle]}>
+        <View style={styles.container}>
             <View style={styles.row}>
                 <Text style={styles.label}>Symbol:</Text>
                 <Text style={styles.value}>{item.symbol}</Text>
             </View>
             <View style={styles.separator} />
-            <View style={styles.row}>
+            <Animated.View style={[styles.row, priceAnimatedStyle]}>
                 <Text style={styles.label}>Price:</Text>
                 <Text style={styles.value}>{item.price}</Text>
-            </View>
+            </Animated.View>
             <View style={styles.separator} />
-            <View style={styles.row}>
+            <Animated.View style={[styles.row, bestBidPriceAnimatedStyle]}>
                 <Text style={styles.label}>Best Bid Price:</Text>
                 <Text style={styles.value}>{item.bestBidPrice}</Text>
-            </View>
+            </Animated.View>
             <View style={styles.separator} />
-            <View style={styles.row}>
+            <Animated.View style={[styles.row, bestAskPriceAnimatedStyle]}>
                 <Text style={styles.label}>Best Ask Price:</Text>
                 <Text style={styles.value}>{item.bestAskPrice}</Text>
-            </View>
+            </Animated.View>
             <View style={styles.separator} />
-            <View style={styles.row}>
+            <Animated.View style={[styles.row, bestAskSizeAnimatedStyle]}>
                 <Text style={styles.label}>Best Ask Size:</Text>
                 <Text style={styles.value}>{item.bestAskSize}</Text>
-            </View>
-        </Animated.View>
+            </Animated.View>
+        </View>
     );
 };
 
