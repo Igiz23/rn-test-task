@@ -20,9 +20,9 @@ react-navigation
 react-native-reanimated
 
 ```
-<img src="https://github.com/Igiz23/rn-test-task/assets/74706458/789829c4-ddc6-4d93-93a0-ad5c7bd84242" width="500"/>
-<img src="https://github.com/Igiz23/rn-test-task/assets/74706458/27825aef-ec68-4e64-b547-00d9aa551d5c" width="500"/>
-<img src="https://github.com/Igiz23/rn-test-task/assets/74706458/058b8e5a-091f-4dc4-8f1a-c584c645b4d8" width="500"/>
-<img src="https://github.com/Igiz23/rn-test-task/assets/74706458/a2ef77e1-0d38-4020-9287-eb639fdcb5cc" width="500"/>
+<img src="https://github.com/Igiz23/rn-test-task/assets/74706458/789829c4-ddc6-4d93-93a0-ad5c7bd84242" width="200"/>
+<img src="https://github.com/Igiz23/rn-test-task/assets/74706458/27825aef-ec68-4e64-b547-00d9aa551d5c" width="200"/>
+<img src="https://github.com/Igiz23/rn-test-task/assets/74706458/058b8e5a-091f-4dc4-8f1a-c584c645b4d8" width="200"/>
+<img src="https://github.com/Igiz23/rn-test-task/assets/74706458/a2ef77e1-0d38-4020-9287-eb639fdcb5cc" width="200"/>
 
 
